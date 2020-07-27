@@ -2,7 +2,11 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import javax.naming.AuthenticationException;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.WebAttributes;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,11 +40,44 @@ public class MainController {
 	 */
 	@GetMapping
 	public String index(Model model) {
-		// c.画面に表示するデータを渡す
+		//↓画面に表示するデータを渡す
 		model.addAttribute("sysName", MoviesConstants.sysName);
 		return "login";
 	}
-	
+
+	/**
+	 * <dd>ログインの認証処理
+	 * <dl>ログインページでの処理。
+	 * @param error リクエストパス：エラー
+	 * @param logout リクエストパス：ログアウト
+	 * @param model モデル
+	 * @param session セッション
+	 * @return 遷移先URL
+	 */
+	@GetMapping("/login")
+	public String login(@RequestParam(value = "error", required = false) String error,
+			@RequestParam(value = "logout", required = false) String logout, Model model, HttpSession session) {
+		//↓モデルから、フォームでの値を受け取る。
+		model.addAttribute("showErrorMsg", false);
+		model.addAttribute("showLogoutedMsg", false);
+		//↓リクエストパスが「エラー」の場合
+		if (error != null) {
+			//↓セッションが存在する場合
+			if (session != null) {
+				AuthenticationException ex = (AuthenticationException) session
+						.getAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
+				if (ex != null) {
+					model.addAttribute("showErrorMsg", true);
+					model.addAttribute("errorMsg", ex.getMessage());
+				}
+			}
+			/* ↓ログアウト処理 */
+		} else if (logout != null) {
+			model.addAttribute("showLogoutedMsg", true);
+		}
+		return "login";
+	}
+
 	/**
 	 * <dd>ログイン成功時の処理
 	 * @param model モデル
