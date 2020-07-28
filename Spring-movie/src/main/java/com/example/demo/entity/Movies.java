@@ -9,7 +9,7 @@ import org.springframework.lang.NonNull;
 
 /**
  * <dd>動画情報のドメイン（Bean）クラス
- * <dl>MOviesテーブルの各種情報を管理するための型
+ * <dl>Moviesテーブルの各種情報を管理するための型
  * @author yuya
  */
 @Entity

@@ -24,9 +24,9 @@
                     <div th:if="${showErrorMsg}" class="alert alert-danger" role="alert" th:text="${errorMsg}">※エラーメッセージ※</div>
                     <div th:if="${showLogoutedMsg}" class="alert alert-success" role="alert" th:text="#{demo.login.logouted}">※ログアウトメッセージ※</div>
                     <div class="form-group row">
-                        <label class="col-md-2 control-label">ユーザー名</label>
+                        <label class="col-md-2 control-label">メールアドレス</label>
                         <div class="col-md-10">
-                            <input class="form-control" type="text" name="username" placeholder="ユーザー名" />
+                            <input class="form-control" type="text" name="eMail" placeholder="メールアドレス" />
                         </div>
                     </div>
                     <div class="form-group row">
@@ -37,7 +37,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="offset-md-2 col-md-10" align="center">
-                            <button class="btn btn-primary">ログイン</button>
+                            <button class="btn btn-primary" type="submit">ログイン</button>
                         </div>
                     </div>
                 </form>
