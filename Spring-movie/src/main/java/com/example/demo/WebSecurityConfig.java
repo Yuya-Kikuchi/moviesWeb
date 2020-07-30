@@ -31,7 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // AUTHORIZE
                 .authorizeRequests()
                 /* ↓認証なしで見れるページ */
-                //.mvcMatchers("/hello").permitAll()
+                .antMatchers("/movies/sign_up").permitAll()
                 /* ↓上記以外は認証を必要とする */
                 .anyRequest()/*    */.authenticated().and()
                 // LOGIN
@@ -75,7 +75,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
         /*
-         * インメモリの場合は以下を使います。 auth .inMemoryAuthentication()
+         * ↓インメモリの場合は以下を使います。 auth .inMemoryAuthentication()
          * .withUser("user").password("{noop}password").roles("USER");
          */
     }

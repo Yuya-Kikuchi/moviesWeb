@@ -6,6 +6,6 @@ package com.example.demo.constants;
  * @author yuya
  */
 public class MoviesConstants {
-	/** <DD>動画投稿閲覧サイト名称 */
-	public static String C_STR_SYSNAME = "動画";
+    /** <DD>動画投稿閲覧サイト名称 */
+    public static final String C_STR_SYSNAME = "動画";
 }

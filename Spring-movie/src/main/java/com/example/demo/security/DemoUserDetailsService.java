@@ -45,11 +45,11 @@ public class DemoUserDetailsService implements UserDetailsService {
         //rawDataのパスワードは渡すことができないので、暗号化
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-        System.out.println("ユーザーは" + eLoginUser.getEmail() + "でパスワードは" + eLoginUser.getPassWord());
+        System.out.println("ユーザーは" + eLoginUser.getName() + "でパスワードは" + eLoginUser.getPassWord());
         //UserDetailsはインタフェースなのでUserクラスのコンストラクタで生成したユーザオブジェクトをキャスト
-        UserDetails userDetails = (UserDetails) new User(eLoginUser.getEmail(),
-                encoder.encode(eLoginUser.getPassWord()), grantList);
-
+        UserDetails userDetails = (UserDetails) new User(eLoginUser.getName(), encoder.encode(eLoginUser.getPassWord()),
+                grantList);
+        //↑ユーザーの検索自体はメールアドレスで行うが、実際に認証情報に渡すのはユーザー名（画面表示させるため）
         return userDetails;
     }
 }
