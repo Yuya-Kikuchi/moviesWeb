@@ -24,7 +24,7 @@ public class LoginUser {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
-	private String id;
+	private Integer id;
 
 	/** <dd>エンティティ：名前 */
 	@Column(name = "name")
@@ -45,14 +45,14 @@ public class LoginUser {
 	/**
 	 * @return id ユーザーID
 	 */
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 
 	/**
 	 * @param id ユーザーID
 	 */
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
